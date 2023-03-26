@@ -65,6 +65,12 @@ class MainActivity : AppCompatActivity() {
                 enableButtons()
             }*/
             updateQuestion()
+            if (binding.trueButton.visibility == View.INVISIBLE){
+                binding.trueButton.visibility = View.VISIBLE
+            }
+            else if (binding.falseButton.visibility == View.INVISIBLE){
+                binding.falseButton.visibility = View.VISIBLE
+            }
         }
 
 
