@@ -47,11 +47,9 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         return questionBank[currentIndex].cheated
     }
 
-    fun setCheatStatus(){
+    fun setCheatStatus() {
         questionBank[currentIndex].cheated = true;
     }
-
-
 
     fun moveToNext() {
         Log.d(TAG, "Updating question text", Exception())

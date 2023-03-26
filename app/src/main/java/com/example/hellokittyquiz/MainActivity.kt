@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             checkAnswer(true)
             //answered[current_index%question_bank.size] = true;
             //disableButtons()
+
         }
 
         binding.falseButton.setOnClickListener { view: View ->
@@ -65,6 +66,8 @@ class MainActivity : AppCompatActivity() {
             }*/
             updateQuestion()
         }
+
+
         val correctAnswer = quizViewModel.currentQuestionAnswer
         binding.cheatButton.setOnClickListener {
             //start cheat activity
@@ -72,10 +75,16 @@ class MainActivity : AppCompatActivity() {
             val answerIsTrue = quizViewModel.currentQuestionAnswer
             quizViewModel.setCheatStatus()
             val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
+
             //startActivity(intent)
             cheatLauncher.launch(intent)
-            if (correctAnswer){
 
+            var temp = false
+            temp = answerIsTrue;
+            if (!temp) {
+                binding.trueButton.visibility = View.INVISIBLE;
+            } else {
+                binding.falseButton.visibility = View.INVISIBLE;
             }
         }
 
