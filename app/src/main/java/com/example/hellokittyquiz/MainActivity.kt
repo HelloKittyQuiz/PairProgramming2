@@ -22,10 +22,7 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.isCheater =
                 result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
         }
-        val answer = quizViewModel.currentQuestionAnswer;
-        var temp = answer;
-
-        if (!temp) {
+        if (!quizViewModel.currentQuestionAnswer) {
             binding.trueButton.visibility = View.INVISIBLE;
         } else {
             binding.falseButton.visibility = View.INVISIBLE;
