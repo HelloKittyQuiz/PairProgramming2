@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val quizViewModel: QuizViewModel by viewModels()
 
-
     private val cheatLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ){
+        ActivityResultContracts.StartActivityForResult()) {
         result ->
         //handle whatever the result is
         if (result.resultCode == Activity.RESULT_OK) {
@@ -48,8 +46,7 @@ class MainActivity : AppCompatActivity() {
             checkAnswer(true)
             //answered[current_index%question_bank.size] = true;
             //disableButtons()
-
-        }
+        }//end true button
 
         binding.falseButton.setOnClickListener { view: View ->
             checkAnswer(false)
@@ -73,25 +70,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        val correctAnswer = quizViewModel.currentQuestionAnswer
         binding.cheatButton.setOnClickListener {
+            val answer = quizViewModel.currentQuestionAnswer;
+            quizViewModel.setCheatStatus()
+            val intent = CheatActivity.newIntent(this@MainActivity, answer)
+            cheatLauncher.launch(intent)
+            //startActivity(intent)
             //start cheat activity
             //val intent = Intent(this, CheatActivity::class.java)
-            val answerIsTrue = quizViewModel.currentQuestionAnswer
-            quizViewModel.setCheatStatus()
-            val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
-
-            //startActivity(intent)
-            cheatLauncher.launch(intent)
 
             var temp = false
-            temp = answerIsTrue;
+            temp = answer;
+
             if (!temp) {
                 binding.trueButton.visibility = View.INVISIBLE;
             } else {
                 binding.falseButton.visibility = View.INVISIBLE;
-            }
+            }//end else
+
+
         }
 
         binding.questionTextView.setOnClickListener{
