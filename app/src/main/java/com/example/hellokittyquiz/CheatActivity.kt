@@ -13,18 +13,17 @@ const val EXTRA_ANSWER_SHOWN = "com.example.hellokittyquiz.answer_shown"
 
 class CheatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheatBinding
-    private var answerIsTrue = false //initialize to false to start
+    private var isAnswerCorrect = false //initialize to false to start
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
-
+        isAnswerCorrect = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
         binding.showAnswerButton.setOnClickListener {
             //once they clicked the show answer button, enable cheating
             val answerText = when{
-                answerIsTrue -> R.string.true_string
+                isAnswerCorrect -> R.string.true_string
                 else -> R.string.false_string
             }
             binding.answerText.setText(answerText)
@@ -40,9 +39,9 @@ class CheatActivity : AppCompatActivity() {
     }
 
     companion object{
-        fun newIntent(packageContext: Context, answerIsTrue: Boolean): Intent {
+        fun newIntent(packageContext: Context, isAnswerCorrect: Boolean): Intent {
             return Intent(packageContext, CheatActivity::class.java).apply {
-                putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
+                putExtra(EXTRA_ANSWER_IS_TRUE, isAnswerCorrect)
             }
         }
     }

@@ -15,9 +15,7 @@ private const val TAG = "MainActivity";
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val quizViewModel: QuizViewModel by viewModels()
-
-    private val cheatLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) {
+    private val cheatLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         result ->
         //handle whatever the result is
         if (result.resultCode == Activity.RESULT_OK) {
@@ -37,31 +35,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate(Bundle?) called")
-        //setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(TAG, "Got a QuizViewModel: $quizViewModel")
-
-        // what happen if you click on those buttons
         binding.trueButton.setOnClickListener{ view: View ->
-            // Do something if you click on true button
-            // have a correct toast that pops up
             checkAnswer(true)
         }//end true button
-
         binding.falseButton.setOnClickListener { view: View ->
             checkAnswer(false)
         }
-
         //onset listener for the next button, i.e. what happens if you press the next button
         binding.nextButton.setOnClickListener {
             //toggle to next question on click
             quizViewModel.moveToNext()
             updateQuestion()
-            if (binding.trueButton.visibility == View.INVISIBLE){
+            if (binding.trueButton.visibility == View.INVISIBLE) {
                 binding.trueButton.visibility = View.VISIBLE
-            }
-            else if (binding.falseButton.visibility == View.INVISIBLE){
+            } else if (binding.falseButton.visibility == View.INVISIBLE) {
                 binding.falseButton.visibility = View.VISIBLE
             }
         }
@@ -74,17 +64,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.questionTextView.setOnClickListener{
-            //toggle to next question on click
             quizViewModel.moveToNext()
             updateQuestion()
         }
 
         binding.prevButton.setOnClickListener {
-            //toggle to previous question on click
             quizViewModel.moveToPrev()
             updateQuestion()
        }
-        //this will get you the id for the current question in the question array
         updateQuestion()
     }
 
