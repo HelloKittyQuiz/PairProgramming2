@@ -39,8 +39,6 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     val currentQuestionText: Int
         get() = questionBank[currentIndex].textResId
 
-
-    //var currentQuestionCheated: Boolean
     fun ifCheated()
     : Boolean {
         return questionBank[currentIndex].cheated

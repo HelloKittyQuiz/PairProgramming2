@@ -47,23 +47,16 @@ class MainActivity : AppCompatActivity() {
             // Do something if you click on true button
             // have a correct toast that pops up
             checkAnswer(true)
-            //answered[current_index%question_bank.size] = true;
-            //disableButtons()
         }//end true button
 
         binding.falseButton.setOnClickListener { view: View ->
             checkAnswer(false)
-            //answered[current_index%question_bank.size] = true;
-            //disableButtons()
         }
 
         //onset listener for the next button, i.e. what happens if you press the next button
         binding.nextButton.setOnClickListener {
             //toggle to next question on click
             quizViewModel.moveToNext()
-            /*if (!answered[current_index]){
-                enableButtons()
-            }*/
             updateQuestion()
             if (binding.trueButton.visibility == View.INVISIBLE){
                 binding.trueButton.visibility = View.VISIBLE
@@ -78,32 +71,21 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.setCheatStatus()
             val intent = CheatActivity.newIntent(this@MainActivity, answer)
             cheatLauncher.launch(intent)
-            //startActivity(intent)
-            //start cheat activity
-            //val intent = Intent(this, CheatActivity::class.java)
         }
 
         binding.questionTextView.setOnClickListener{
             //toggle to next question on click
             quizViewModel.moveToNext()
-            /*if (!answered[current_index]){
-                enableButtons()
-            }*/
             updateQuestion()
         }
 
         binding.prevButton.setOnClickListener {
             //toggle to previous question on click
             quizViewModel.moveToPrev()
-            /*if (!answered[current_index]){
-                enableButtons()
-            }*/
             updateQuestion()
        }
         //this will get you the id for the current question in the question array
         updateQuestion()
-
-
     }
 
     override fun onStart() {
@@ -137,25 +119,11 @@ class MainActivity : AppCompatActivity() {
     }
     private fun checkAnswer(userAnswer:Boolean){
         val correctAnswer = quizViewModel.currentQuestionAnswer
-        //Log.d(TAG, "" + quizViewModel.currentQuestionCheated)
         val messageResId = when {
             quizViewModel.ifCheated() -> R.string.judgement_string
             userAnswer == correctAnswer -> R.string.correct_string
             else -> R.string.incorrect_string
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
-        //Snackbar.make(findViewById(android.R.id.content), messageResId, BaseTransientBottomBar.LENGTH_SHORT).show()
-        /*if (current_index == (question_bank.size-1)){
-            val totalScore = score*100/ question_bank.size
-            Toast.makeText(this, "${totalScore}%", Toast.LENGTH_SHORT).show()
-        }*/
     }
-    /*private fun disableButtons(){
-        binding.trueButton.isEnabled = false
-        binding.falseButton.isEnabled = false
-    }
-    private fun enableButtons(){
-        binding.trueButton.isEnabled = true
-        binding.falseButton.isEnabled = true
-    }*/
 }
