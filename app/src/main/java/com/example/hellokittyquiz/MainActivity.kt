@@ -1,19 +1,14 @@
 package com.example.hellokittyquiz
 
 import android.app.Activity
-import android.app.Instrumentation.ActivityResult
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hellokittyquiz.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 
 private const val TAG = "MainActivity";
 

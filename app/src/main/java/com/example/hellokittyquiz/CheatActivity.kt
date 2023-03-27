@@ -3,12 +3,10 @@ package com.example.hellokittyquiz
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hellokittyquiz.databinding.ActivityCheatBinding
+
 private const val TAG = "CheatActivity";
 private const val EXTRA_ANSWER_IS_TRUE = "com.example.hellokittyquiz.answer_is_true"
 const val EXTRA_ANSWER_SHOWN = "com.example.hellokittyquiz.answer_shown"
