@@ -29,6 +29,14 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.isCheater =
                 result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
         }
+        val answer = quizViewModel.currentQuestionAnswer;
+        var temp = answer;
+
+        if (!temp) {
+            binding.trueButton.visibility = View.INVISIBLE;
+        } else {
+            binding.falseButton.visibility = View.INVISIBLE;
+        }//end else
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,17 +86,6 @@ class MainActivity : AppCompatActivity() {
             //startActivity(intent)
             //start cheat activity
             //val intent = Intent(this, CheatActivity::class.java)
-
-            var temp = false
-            temp = answer;
-
-            if (!temp) {
-                binding.trueButton.visibility = View.INVISIBLE;
-            } else {
-                binding.falseButton.visibility = View.INVISIBLE;
-            }//end else
-
-
         }
 
         binding.questionTextView.setOnClickListener{
